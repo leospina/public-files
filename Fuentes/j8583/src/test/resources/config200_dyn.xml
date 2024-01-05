@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE j8583-config PUBLIC "-//J8583//DTD CONFIG 1.0//EN"
+	"http://j8583.sourceforge.net/j8583.dtd">
+<j8583-config>
+<!-- This is a test config file -->
+
+<!-- These are the ISO headers to be prepended to the message types specified -->
+<header type="0200">600107036A</header>
+<header type="0210">ISO015000055</header>
+<header type="0400" ref="0200" />
+<header type="0410" ref="0210" />
+<header type="0800">ISO015000015</header>
+<header type="0810" ref="0800"/>
+<header type="0280" binary="true">ffffffff</header>
+
+<!-- The server example uses this to read the requests -->
+<parse type="0100">
+	<field num="1" type="BINARY" length="8" /> <!-- Bitmap 64 -->
+	<field num="3" type="NUMERIC" length="6" /> <!-- ProcessingCode 6 -->
+	<field num="4" type="AMOUNT" />			    <!-- TxnAmount  12 -->
+	<field num="11" type="NUMERIC" length="6" /><!-- SystemTraceNo 6 -->
+	<field num="22" type="NUMERIC" length="4" /><!-- POSEntryMode 3 -->
+	<field num="24" type="NUMERIC" length="4" /><!-- NII 3 -->
+	<field num="25" type="NUMERIC" length="2" /><!-- POSConditionCode 2 -->
+	<field num="35" type="LLVAR" />	<!-- Track2 37 -->
+	<field num="41" type="ALPHA" length="16" />  <!-- TerminalID 8 -->
+	<field num="42" type="ALPHA" length="30" /> <!-- AcquirerID 15 -->
+	<field num="45" type="ALPHA" length="154" /><!-- Track1 76 -->
+	<field num="48" type="LLLLVAR" />  <!-- PrivateAddData ...999 76-->
+	<field num="54" type="LLLLVAR" />	<!-- AddAmounts ...999 76-->
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+	<field num="62" type="LLLLVAR" />   <!-- Field62 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+</parse>
+<parse type="0110">
+	<field num="3" type="NUMERIC" length="6" />
+	<field num="4" type="AMOUNT" />	
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="38" type="NUMERIC" length="12" />
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="42" type="ALPHA" length="30" /><!--AcquirerID  -->
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+	<field num="64" type="ALPHA" length="16" /><!-- MsgAuthCode b 64 --> 
+</parse>
+
+<parse type="0200">
+	<field num="1" type="BINARY" length="8" /> <!-- Bitmap 64 -->
+	<field num="3" type="NUMERIC" length="6" /> <!-- ProcessingCode 6 -->
+	<field num="4" type="AMOUNT" />			    <!-- TxnAmount  12 -->
+	<field num="11" type="NUMERIC" length="6" /><!-- SystemTraceNo 6 -->
+	<field num="12" type="TIME" />				<!--  TxnTime  -->
+	<field num="13" type="DATE4" />	
+	<field num="22" type="NUMERIC" length="4" /><!-- POSEntryMode 3 -->
+	<field num="24" type="NUMERIC" length="4" /><!-- NII 3 -->
+	<field num="25" type="NUMERIC" length="2" /><!-- POSConditionCode 2 -->
+	<field num="35" type="LLVAR" />	<!-- Track2 37 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="38" type="NUMERIC" length="12" /><!--AuthID -->
+	<field num="41" type="ALPHA" length="16" />  <!-- TerminalID 8 -->
+	<field num="42" type="ALPHA" length="30" /> <!-- AcquirerID 15 -->
+	<field num="45" type="ALPHA" length="154" /><!-- Track1 76 -->
+	<field num="48" type="LLLLVAR" />  <!-- PrivateAddData ...999 76-->
+	<field num="52" type="ALPHA" length="16" /><!-- PINData ..BIN-->
+	<field num="54" type="LLLLVAR" />	<!-- AddAmounts ...999 76-->
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+	<field num="62" type="LLLLVAR" />   <!-- Field62 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+</parse>
+
+<!-- The client example uses this to read the responses -->
+<parse type="0210">
+	<field num="3" type="NUMERIC" length="6" />
+	<field num="4" type="AMOUNT" />	
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="38" type="NUMERIC" length="12" />
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="42" type="ALPHA" length="30" /><!--AcquirerID  -->
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+	<field num="64" type="ALPHA" length="16" /><!-- MsgAuthCode b 64 --> 
+</parse>
+<parse type="0320">
+	<field num="2" type="NUMERIC" length="18" />
+	<field num="3" type="NUMERIC" length="6" />
+	<field num="4" type="AMOUNT" />	
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="22" type="NUMERIC" length="4" /><!-- POSEntryMode 3 -->
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="25" type="NUMERIC" length="2" /><!-- POSConditionCode 2 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="38" type="NUMERIC" length="12" />
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="42" type="ALPHA" length="30" /><!--AcquirerID  -->
+	<field num="48" type="LLLLVAR" />  <!-- PrivateAddData ...999 76-->
+	<field num="54" type="LLLLVAR" />	<!-- AddAmounts ...999 76-->
+	<field num="60" type="LLLLVAR" />   <!-- Field60 ...999 -->
+	<field num="62" type="LLLLVAR" />   <!-- Field62 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+	
+</parse>
+<parse type="0330">
+	<field num="3" type="NUMERIC" length="6" />
+	<field num="4" type="AMOUNT" />	
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+</parse>
+<parse type="0400">
+	<field num="1" type="BINARY" length="8" /> <!-- Bitmap 64 -->
+	<field num="3" type="NUMERIC" length="6" /> <!-- ProcessingCode 6 -->
+	<field num="4" type="AMOUNT" />			    <!-- TxnAmount  12 -->
+	<field num="11" type="NUMERIC" length="6" /><!-- SystemTraceNo 6 -->
+	<field num="12" type="TIME" />				<!--  TxnTime  -->
+	<field num="13" type="DATE4" />		
+	<field num="22" type="NUMERIC" length="4" /><!-- POSEntryMode 3 -->
+	<field num="24" type="NUMERIC" length="4" /><!-- NII 3 -->
+	<field num="25" type="NUMERIC" length="2" /><!-- POSConditionCode 2 -->
+	<field num="35" type="LLVAR" />	<!-- Track2 37 -->
+	<field num="37" type="ALPHA" length="24" /><!--RetRefNo -->
+	<field num="38" type="NUMERIC" length="12" /><!--AuthID -->
+	<field num="41" type="ALPHA" length="16" />  <!-- TerminalID 8 -->
+	<field num="42" type="ALPHA" length="30" /> <!-- AcquirerID 15 -->
+	<field num="45" type="ALPHA" length="154" /><!-- Track1 76 -->
+	<field num="48" type="LLLLVAR" />  <!-- PrivateAddData ...999 76-->
+	<field num="54" type="LLLLVAR" />	<!-- AddAmounts ...999 76-->
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+	<field num="62" type="LLLLVAR" />   <!-- Field62 ...999 -->
+	<field num="63" type="LLLLVAR" /> <!-- Field63 ...999 -->
+</parse>
+<parse type="0410">
+    <field num="3" type="NUMERIC" length="6" />
+    <field num="4" type="AMOUNT" />			    <!-- TxnAmount  12 -->
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="37" type="ALPHA" length="24" />
+	<field num="38" type="NUMERIC" length="12" />
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->	
+	<field num="55" type="LLLLVAR"/><!-- Field55 ...999 -->
+</parse>
+<parse type="0500">
+    <field num="3" type="NUMERIC" length="6" />
+    <field num="11" type="NUMERIC" length="6" />
+    <field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+    <field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="42" type="ALPHA" length="30" /><!--AcquirerID  -->
+	<field num="60" type="LLLLVAR"/><!-- Field60 ...999 -->
+	<field num="63" type="LLLLVAR"/><!-- Field63 ...999 -->
+</parse>
+<parse type="0510" extends="0800">
+    <field num="3" type="NUMERIC" length="6" />
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="37" type="ALPHA" length="24" />
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->	
+	<field num="63" type="LLLLVAR"/><!-- Field63 ...999 -->
+</parse>
+<!-- this is for binary tests (message encoding AND fields) -->
+<parse type="0600">
+	<field num="4" type="AMOUNT" />
+	<field num="7" type="DATE10" />
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="41" type="BINARY" length="8" />
+	<field num="42" type="BINARY" length="4" />
+	<field num="43" type="ALPHA" length="40" />
+	<field num="62" type="LLBIN" />
+	<field num="63" type="LLBIN" />
+	<field num="64" type="LLLBIN" />
+	<field num="65" type="LLLBIN" />
+	<field num="102" type="LLLVAR" />
+</parse>
+
+<parse type="0800">
+    <field num="3" type="NUMERIC" length="6" />
+    <field num="11" type="NUMERIC" length="6" />
+    <field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+    <field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="42" type="ALPHA" length="30" /><!--AcquirerID  -->
+	<field num="63" type="LLLLVAR"/><!-- Field63 ...999 -->
+</parse>
+
+<parse type="0810" extends="0800">
+    <field num="3" type="NUMERIC" length="6" />
+	<field num="11" type="NUMERIC" length="6" />
+	<field num="12" type="TIME" />
+	<field num="13" type="DATE4" />	
+	<field num="24" type="NUMERIC"  length="4"/><!-- NII 3 -->
+	<field num="39" type="NUMERIC" length="4" />
+	<field num="41" type="ALPHA" length="16" /><!--TerminalID  -->
+	<field num="62" type="LLLLVAR"/><!-- Field62 ...999 -->
+	<field num="63" type="LLLLVAR"/><!-- Field63 ...999 -->
+</parse>
+
+</j8583-config>
